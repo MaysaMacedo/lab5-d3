@@ -37,7 +37,8 @@ function draw(file, id) {
         return {
             id: String(d.codigo_disciplina),
             codigo_departamento: d.codigo_departamento,
-            nome: d.disciplina
+            nome: d.disciplina,
+            semestre: d.semestre
         };
     });
 
@@ -72,7 +73,7 @@ function draw(file, id) {
             return 5;
         })
         .attr("fill", function (d) {
-            return color(d.codigo_departamento);
+            return color(d.semestre);
         })
         .call(d3.drag()
             .on("start", dragstarted)
