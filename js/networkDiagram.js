@@ -38,7 +38,9 @@ function draw(file, id) {
             id: String(d.codigo_disciplina),
             codigo_departamento: d.codigo_departamento,
             nome: d.disciplina,
-            semestre: d.semestre
+            semestre: d.semestre,
+            creditos: d.creditos,
+
         };
     });
 
@@ -51,7 +53,9 @@ function draw(file, id) {
     nodes.push({
         id: "inicio",
         codigo_departamento: -1,
-        nome: "Início"
+        nome: "Início",
+        creditos: 10
+
     });
 
 
@@ -69,8 +73,14 @@ function draw(file, id) {
         .attr("r", function(d){
             if (d.id == "inicio") {
                 return 15;
+            } else {
+                if(d.creditos <= 1) {
+                    return 5;
+                } else {
+                    return  +d.creditos*1.5;
+                }
             }
-            return 5;
+            
         })
         .attr("fill", function (d) {
             return color(d.semestre);
